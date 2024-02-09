@@ -1,35 +1,59 @@
-SELECT *
-FROM `cyclistic-case-study202401.trip_data.202301-divvy-tripdata` 
+SELECT
+  *
+FROM
+  `cyclistic-case-study202401.trip_data.202301-divvy-tripdata`
 UNION ALL
-SELECT *
-FROM `cyclistic-case-study202401.trip_data.202302-divvy-tripdata` 
+SELECT
+  *
+FROM
+  `cyclistic-case-study202401.trip_data.202302-divvy-tripdata`
 UNION ALL
-SELECT *
-FROM `cyclistic-case-study202401.trip_data.202303-divvy-tripdata` 
+SELECT
+  *
+FROM
+  `cyclistic-case-study202401.trip_data.202303-divvy-tripdata`
 UNION ALL
-SELECT *
-FROM `cyclistic-case-study202401.trip_data.202304-divvy-tripdata` 
+SELECT
+  *
+FROM
+  `cyclistic-case-study202401.trip_data.202304-divvy-tripdata`
 UNION ALL
-SELECT *
-FROM `cyclistic-case-study202401.trip_data.202305-divvy-tripdata` 
+SELECT
+  *
+FROM
+  `cyclistic-case-study202401.trip_data.202305-divvy-tripdata`
 UNION ALL
-SELECT *
-FROM `cyclistic-case-study202401.trip_data.202306-divvy-tripdata` 
+SELECT
+  *
+FROM
+  `cyclistic-case-study202401.trip_data.202306-divvy-tripdata`
 UNION ALL
-SELECT *
-FROM `cyclistic-case-study202401.trip_data.202307-divvy-tripdata` 
+SELECT
+  *
+FROM
+  `cyclistic-case-study202401.trip_data.202307-divvy-tripdata`
 UNION ALL
-SELECT *
-FROM `cyclistic-case-study202401.trip_data.202308-divvy-tripdata` 
+SELECT
+  *
+FROM
+  `cyclistic-case-study202401.trip_data.202308-divvy-tripdata`
 UNION ALL
-SELECT *
-FROM `cyclistic-case-study202401.trip_data.202309-divvy-tripdata` 
+SELECT
+  *
+FROM
+  `cyclistic-case-study202401.trip_data.202309-divvy-tripdata`
 UNION ALL
-SELECT *
-FROM `cyclistic-case-study202401.trip_data.202310-divvy-tripdata` 
+SELECT
+  *
+FROM
+  `cyclistic-case-study202401.trip_data.202310-divvy-tripdata`
 UNION ALL
-SELECT *
-FROM `cyclistic-case-study202401.trip_data.202311-divvy-tripdata` 
+SELECT
+  *
+FROM
+  `cyclistic-case-study202401.trip_data.202311-divvy-tripdata`
 UNION ALL
-SELECT *
-FROM `cyclistic-case-study202401.trip_data.202312-divvy-tripdata` 
+SELECT
+  *
+FROM
+  `cyclistic-case-study202401.trip_data.202312-divvy-tripdata`
