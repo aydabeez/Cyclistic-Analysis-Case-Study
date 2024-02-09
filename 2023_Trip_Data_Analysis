@@ -1,3 +1,5 @@
+--Step 1 – Union All (5719877 rows) Combinig all files together for analysis
+
 SELECT
   *
 FROM
@@ -57,3 +59,492 @@ SELECT
   *
 FROM
   `cyclistic-case-study202401.trip_data.202312-divvy-tripdata`
+
+ --STEP 2 – Create new table (5,662,947 rows) I wanted to create a fresh table noting I started with 5719877 rows
+
+
+CREATE TABLE
+   `cyclistic-case-study202401.trip_data.2023_Year_Trips_F` AS
+SELECT --I excluded stion_id fields
+  ride_id,
+  rideable_type,
+  started_at,
+  ended_at,
+  start_station_name,
+  end_station_name,
+  start_lat,
+  start_lng,
+  end_lat,
+  end_lng,
+  member_casual,
+  
+FROM
+  `cyclistic-case-study202401.trip_data.202301-divvy-tripdata`
+UNION ALL
+SELECT
+  ride_id,
+  rideable_type,
+  started_at,
+  ended_at,
+  start_station_name,
+  end_station_name,
+  start_lat,
+  start_lng,
+  end_lat,
+  end_lng,
+  member_casual
+FROM
+  `cyclistic-case-study202401.trip_data.202302-divvy-tripdata`
+UNION ALL
+SELECT
+  ride_id,
+  rideable_type,
+  started_at,
+  ended_at,
+  start_station_name,
+  end_station_name,
+  start_lat,
+  start_lng,
+  end_lat,
+  end_lng,
+  member_casual
+FROM
+  `cyclistic-case-study202401.trip_data.202303-divvy-tripdata`
+UNION ALL
+SELECT
+  ride_id,
+  rideable_type,
+  started_at,
+  ended_at,
+  start_station_name,
+  end_station_name,
+  start_lat,
+  start_lng,
+  end_lat,
+  end_lng,
+  member_casual
+FROM
+  `cyclistic-case-study202401.trip_data.202304-divvy-tripdata`
+UNION ALL
+SELECT
+ ride_id,
+  rideable_type,
+  started_at,
+  ended_at,
+  start_station_name,
+  end_station_name,
+  start_lat,
+  start_lng,
+  end_lat,
+  end_lng,
+  member_casual
+FROM
+  `cyclistic-case-study202401.trip_data.202305-divvy-tripdata`
+UNION ALL
+SELECT
+  ride_id,
+  rideable_type,
+  started_at,
+  ended_at,
+  start_station_name,
+  end_station_name,
+  start_lat,
+  start_lng,
+  end_lat,
+  end_lng,
+  member_casual
+FROM
+  `cyclistic-case-study202401.trip_data.202306-divvy-tripdata`
+UNION ALL
+SELECT
+ ride_id,
+  rideable_type,
+  started_at,
+  ended_at,
+  start_station_name,
+  end_station_name,
+  start_lat,
+  start_lng,
+  end_lat,
+  end_lng,
+  member_casual
+FROM
+  `cyclistic-case-study202401.trip_data.202307-divvy-tripdata`
+UNION ALL
+SELECT
+  ride_id,
+  rideable_type,
+  started_at,
+  ended_at,
+  start_station_name,
+  end_station_name,
+  start_lat,
+  start_lng,
+  end_lat,
+  end_lng,
+  member_casual
+FROM
+  `cyclistic-case-study202401.trip_data.202308-divvy-tripdata`
+UNION ALL
+SELECT
+  ride_id,
+  rideable_type,
+  started_at,
+  ended_at,
+  start_station_name,
+  end_station_name,
+  start_lat,
+  start_lng,
+  end_lat,
+  end_lng,
+  member_casual
+FROM
+  `cyclistic-case-study202401.trip_data.202309-divvy-tripdata`
+UNION ALL
+SELECT
+  ride_id,
+  rideable_type,
+  started_at,
+  ended_at,
+  start_station_name,
+  end_station_name,
+  start_lat,
+  start_lng,
+  end_lat,
+  end_lng,
+  member_casual
+FROM
+  `cyclistic-case-study202401.trip_data.202310-divvy-tripdata`
+UNION ALL
+SELECT
+  ride_id,
+  rideable_type,
+  started_at,
+  ended_at,
+  start_station_name,
+  end_station_name,
+  start_lat,
+  start_lng,
+  end_lat,
+  end_lng,
+  member_casual
+FROM
+  `cyclistic-case-study202401.trip_data.202311-divvy-tripdata`
+UNION ALL
+SELECT
+  ride_id,
+  rideable_type,
+  started_at,
+  ended_at,
+  start_station_name,
+  end_station_name,
+  start_lat,
+  start_lng,
+  end_lat,
+  end_lng,
+  member_casual
+FROM
+  `cyclistic-case-study202401.trip_data.202312-divvy-tripdata`
+WHERE
+  ride_id IS NOT NULL
+  AND rideable_type IS NOT NULL
+  AND started_at IS NOT NULL
+  AND ended_at IS NOT NULL
+  AND start_station_name IS NOT NULL
+  AND end_station_name IS NOT NULL
+  AND start_lat IS NOT NULL
+  AND start_lng IS NOT NULL
+  AND end_lat IS NOT NULL
+  AND end_lng IS NOT NULL
+  AND member_casual IS NOT NULL;
+
+
+--STEP 3 – Count all rows (max 5662947, min 4771669)
+SELECT
+  COUNT(ride_id) AS ride_id_count,
+  COUNT(started_at) AS started_at_count,
+  COUNT(ended_at) AS ended_at_count,
+  COUNT(start_station_name) AS start_station_name_count,
+  COUNT(end_station_name) AS end_station_name,
+  COUNT(start_lat) AS start_lat_count,
+  COUNT(start_lng) AS start_lng_count,
+  COUNT(end_lat) AS end_lat_count,
+  COUNT(end_lng) AS end_lng_count,
+  COUNT(member_casual) AS member_casual_count
+FROM
+  `cyclistic-case-study202401.trip_data.2023_Year_Trips_F`
+
+--STEP 4 -  Count Distinct Ride ID (5662947)
+SELECT
+  COUNT(DISTINCT(ride_id))
+FROM
+  `cyclistic-case-study202401.trip_data.2023_Year_Trips_F`
+
+--STEP 5 – Verify Ride-ID as primary key (16 char)
+SELECT
+  LENGTH(ride_id) AS ride_id_length
+FROM
+  `cyclistic-case-study202401.trip_data.2023_Year_Trips_F`
+ORDER BY
+  ride_id_length DESC;
+
+--STEP 4.1 and ASC
+SELECT
+  LENGTH(ride_id) AS ride_id_length
+FROM
+  `cyclistic-case-study202401.trip_data.2023_Year_Trips_F`
+ORDER BY
+  ride_id_length ASC;
+
+--STEP 6 – Confirm no null values make new table (4332069 rows)
+create table `cyclistic-case-study202401.trip_data.tripdata_cleaned2023_Year_Trips_Clean_F` AS
+SELECT *
+FROM `cyclistic-case-study202401.trip_data.2023_Year_Trips_F`
+WHERE
+start_station_name is not null and
+end_station_name is not null;
+
+--STEP 7 – Calculate columns (4168837 rows)
+SELECT
+  ride_id,
+  rideable_type,
+  start_station_name,
+  end_station_name,
+  start_lat,
+  start_lng,
+  end_lat,
+  end_lng,
+  member_casual AS member_type,
+  started_at,
+  CASE
+    WHEN EXTRACT (DAYOFWEEK FROM started_at) = 1 THEN 'SUN'
+    WHEN EXTRACT (DAYOFWEEK
+  FROM
+    started_at) = 2 THEN 'MON'
+    WHEN EXTRACT (DAYOFWEEK FROM started_at) = 3 THEN 'TUE'
+    WHEN EXTRACT (DAYOFWEEK
+  FROM
+    started_at) = 4 THEN 'WED'
+    WHEN EXTRACT (DAYOFWEEK FROM started_at) = 5 THEN 'THU'
+    WHEN EXTRACT (DAYOFWEEK
+  FROM
+    started_at) = 6 THEN 'FRI'
+  ELSE
+  'SAT'
+END
+  AS day_of_week,
+  CASE
+    WHEN EXTRACT (MONTH FROM started_at) = 1 THEN 'JAN'
+    WHEN EXTRACT (MONTH
+  FROM
+    started_at) = 2 THEN 'FEB'
+    WHEN EXTRACT (MONTH FROM started_at) = 3 THEN 'MAR'
+    WHEN EXTRACT (MONTH
+  FROM
+    started_at) = 4 THEN 'APR'
+    WHEN EXTRACT (MONTH FROM started_at) = 5 THEN 'MAY'
+    WHEN EXTRACT (MONTH
+  FROM
+    started_at) = 6 THEN 'Jun'
+    WHEN EXTRACT (MONTH FROM started_at) = 7 THEN 'JUL'
+    WHEN EXTRACT (Month
+  FROM
+    STarTED_AT) = 8 THEN 'AUG'
+    WHEN EXTRACT (MONTH FROM STARTED_AT) = 9 THEN 'SEP'
+    WHEN EXTRACT (MONTH
+  FROM
+    STARTED_AT) = 10 THEN 'OCT'
+    WHEN EXTRACT (MONTH FROM STARTED_AT) = 11 THEN 'NOV'
+    WHEN EXTRACT (MONTH
+  FROM
+    STARTED_AT) = 12 THEN 'DEC'
+  ELSE
+  'UNKOWN'
+END
+  AS month,
+  EXTRACT (DAY
+  FROM
+    started_at) AS day,
+  EXTRACT (YEAR
+  FROM
+    started_at) AS year,
+  TIMESTAMP_DIFF (ended_at, started_at, minute) AS ride_length_m,
+  FORMAT_TIMESTAMP("%I:%M %p", started_at) AS time
+FROM
+  `cyclistic-case-study202401.trip_data.tripdata_cleaned2023_Year_Trips_Clean_F`
+WHERE
+  TIMESTAMP_DIFF (ended_at, started_at, minute) > 1
+  AND TIMESTAMP_DIFF (ended_at, started_at, hour) < 24
+
+--STEP 8 – Create Path-ID
+
+-- adding PATH_ID
+ALTER TABLE
+  `cyclistic-case-study202401.trip_data.tripdata_cleaned2023_Year_Trips_Clean_F` ADD COLUMN path_id STRING;
+
+--STEP 9 – Create path_ID values (4332069 rows)
+
+  -- adding PATH_ID values
+UPDATE
+  `cyclistic-case-study202401.trip_data.tripdata_cleaned2023_Year_Trips_Clean_F`
+SET
+  path_id = CONCAT(start_station_name, ' - ', end_station_name)
+WHERE
+  start_station_name IS NOT null
+
+--Step 10 add columns for cal values (4168837 ROWS)
+ALTER TABLE `cyclistic-case-study202401.trip_data.tripdata_cleaned2023_Year_Trips_Clean_F`
+ADD COLUMN day_of_week STRING,
+ADD COLUMN name_of_month STRING,
+ADD COLUMN day INT,
+ADD COLUMN year INT,
+ADD COLUMN ride_length_minutes INT,
+ADD COLUMN time_formatted INT;
+
+--STEP 11 enter the values
+
+UPDATE
+  `cyclistic-case-study202401.trip_data.tripdata_cleaned2023_Year_Trips_Clean_F`
+SET
+  day_of_week =
+  CASE
+    WHEN EXTRACT(DAYOFWEEK FROM started_at) = 1 THEN 'MON'
+    WHEN EXTRACT(DAYOFWEEK
+  FROM
+    started_at) = 2 THEN 'TUE'
+    WHEN EXTRACT(DAYOFWEEK FROM started_at) = 3 THEN 'WED'
+    WHEN EXTRACT(DAYOFWEEK
+  FROM
+    started_at) = 4 THEN 'THU'
+    WHEN EXTRACT(DAYOFWEEK FROM started_at) = 5 THEN 'FRI'
+    WHEN EXTRACT(DAYOFWEEK
+  FROM
+    started_at) = 6 THEN 'SAT'
+  ELSE
+  'SUN'
+END
+  ,
+  name_of_month =
+  CASE
+    WHEN EXTRACT(MONTH FROM started_at) = 1 THEN 'JAN'
+    WHEN EXTRACT(MONTH
+  FROM
+    started_at) = 2 THEN 'FEB'
+    WHEN EXTRACT(MONTH FROM started_at) = 3 THEN 'MAR'
+    WHEN EXTRACT(MONTH
+  FROM
+    started_at) = 4 THEN 'APR'
+    WHEN EXTRACT(MONTH FROM started_at) = 5 THEN 'MAY'
+    WHEN EXTRACT(MONTH
+  FROM
+    started_at) = 6 THEN 'JUN'
+    WHEN EXTRACT(MONTH FROM started_at) = 7 THEN 'JUL'
+    WHEN EXTRACT(MONTH
+  FROM
+    started_at) = 8 THEN 'AUG'
+    WHEN EXTRACT(MONTH FROM started_at) = 9 THEN 'SEP'
+    WHEN EXTRACT(MONTH
+  FROM
+    started_at) = 10 THEN 'OCT'
+    WHEN EXTRACT(MONTH FROM started_at) = 11 THEN 'NOV'
+    WHEN EXTRACT(MONTH
+  FROM
+    started_at) = 12 THEN 'DEC'
+  ELSE
+  'UNKNOWN'
+END
+  ,
+  day = EXTRACT(DAY
+  FROM
+    started_at),
+  year = EXTRACT(YEAR
+  FROM
+    started_at),
+  ride_length_minutes = TIMESTAMP_DIFF(ended_at, started_at, minute)
+WHERE
+  TIMESTAMP_DIFF (ended_at, started_at, minute) > 1
+  AND TIMESTAMP_DIFF (ended_at, started_at, hour) < 24
+
+--STEP 12 COUNT ALL
+SELECT
+  COUNT(ride_id) AS ride_id_count,
+  COUNT(started_at) AS started_at_count,
+  COUNT(ended_at) AS ended_at_count,
+  COUNT(start_station_name) AS start_station_name_count,
+  COUNT(end_station_name) AS end_station_name,
+  COUNT(start_lat) AS start_lat_count,
+  COUNT(start_lng) AS start_lng_count,
+  COUNT(end_lat) AS end_lat_count,
+  COUNT(end_lng) AS end_lng_count,
+  COUNT(member_casual) AS member_casual_count,
+  COUNT(path_id) AS path_id_count,
+  COUNT(day_of_week) AS day_of_week_count,
+  COUNT(name_of_month) AS name_of_month_count,
+  COUNT(day) AS day_count,
+  COUNT(year) AS year_count,
+  COUNT(ride_length_minutes) AS ride_len_count
+FROM
+  `cyclistic-case-study202401.trip_data.tripdata_cleaned2023_Year_Trips_Clean_F`
+
+--STEP 13 – not null q to remove remaining null values
+SELECT
+  *
+FROM
+  `cyclistic-case-study202401.trip_data.tripdata_cleaned2023_Year_Trips_Clean_F`
+WHERE
+  ride_id IS NOT NULL
+  AND rideable_type IS NOT NULL
+  AND started_at IS NOT NULL
+  AND ended_at IS NOT NULL
+  AND start_station_name IS NOT NULL
+  AND end_station_name IS NOT NULL
+  AND start_lat IS NOT NULL
+  AND start_lng IS NOT NULL
+  AND end_lat IS NOT NULL
+  AND end_lng IS NOT NULL
+  AND member_casual IS NOT NULL
+  AND path_id IS NOT NULL
+  AND day_of_week IS NOT NULL
+  AND name_of_month IS NOT NULL
+  AND day IS NOT NULL
+  AND year IS NOT NULL
+  AND ride_length_minutes IS NOT NULL
+
+--STEP 14 VERIFIED NO NULL VALUES (4168721 ROWS)
+SELECT
+  COUNT(ride_id) AS ride_id_count,
+  COUNT(started_at) AS started_at_count,
+  COUNT(ended_at) AS ended_at_count,
+  COUNT(start_station_name) AS start_station_name_count,
+  COUNT(end_station_name) AS end_station_name,
+  COUNT(start_lat) AS start_lat_count,
+  COUNT(start_lng) AS start_lng_count,
+  COUNT(end_lat) AS end_lat_count,
+  COUNT(end_lng) AS end_lng_count,
+  COUNT(member_casual) AS member_casual_count,
+  COUNT(path_id) AS path_id_count,
+  COUNT(day_of_week) AS day_of_week_count,
+  COUNT(name_of_month) AS name_of_month_count,
+  COUNT(day) AS day_count,
+  COUNT(year) AS year_count,
+  COUNT(ride_length_minutes) AS ride_len_count
+FROM
+  `cyclistic-case-study202401.trip_data.FINAL_2023_TRIP_DATA`
+
+--STEP 15 – Fix field value 
+
+UPDATE
+  `cyclistic-case-study202401.trip_data.FINAL_2023_TRIP_DATA`
+SET
+  rideable_type =
+  CASE
+    WHEN rideable_type = 'classic_bike' THEN 'Classic'
+    WHEN rideable_type = 'docked_bike' THEN 'Docked'
+    WHEN rideable_type = 'electric_bike' THEN 'Electric'
+  ELSE
+  rideable_type
+END
+WHERE
+  rideable_type IS NOT null
+
+
